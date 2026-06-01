@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: ./scoreboard-backend
+      dockerfile: Dockerfile
+    container_name: scoreboard-backend
+    environment:
+      PORT: 4000
+      FRONTEND_ORIGIN: "*"
+      STATE_FILE: /app/data/match-state.json
+    volumes:
+      - ./scoreboard-backend/data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./scoreboard-frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_SOCKET_URL: ""
+    container_name: scoreboard-frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    restart: unless-stopped

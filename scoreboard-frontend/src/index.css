@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #04052a;
+  --bg-secondary: #091a6a;
+  --surface: rgba(6, 11, 46, 0.78);
+  --surface-strong: rgba(3, 7, 30, 0.92);
+  --accent: #a3f0ff;
+  --accent-soft: #d8fbff;
+  --accent-strong: #ffffff;
+  --line: rgba(255, 255, 255, 0.1);
+  --text-primary: #f8fbff;
+  --text-secondary: #d5dcff;
+  --shadow: 0 38px 96px rgba(0, 0, 0, 0.48);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg-primary);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-primary);
+  font-family: "Inter", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.12) 0%, transparent 12%),
+    radial-gradient(circle at 50% 22%, rgba(185, 82, 255, 0.2) 0%, transparent 22%),
+    radial-gradient(circle at 50% 78%, rgba(100, 24, 211, 0.24) 0%, transparent 28%),
+    linear-gradient(180deg, #07108f 0%, #05055f 44%, #04052a 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.08) 0%, transparent 6%),
+    linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.04) 18%, transparent 20%),
+    linear-gradient(300deg, transparent 0%, rgba(255, 255, 255, 0.04) 18%, transparent 20%),
+    repeating-linear-gradient(150deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 18px);
+  mix-blend-mode: screen;
+  opacity: 0.42;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.16) 0%, transparent 10%),
+    radial-gradient(circle at 18% 42%, rgba(255, 64, 208, 0.32) 0%, transparent 18%),
+    radial-gradient(circle at 82% 58%, rgba(130, 72, 255, 0.26) 0%, transparent 20%),
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 100%);
+  opacity: 0.28;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(199, 162, 75, 0.35);
+  color: var(--text-primary);
+}
+
+.champions-display {
+  font-family: "Oswald", "Inter", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.champions-body {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.champions-body::before {
+  content: "";
+  position: absolute;
+  inset: 4% 0 auto;
+  height: 52%;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.18) 0%, transparent 5%),
+    radial-gradient(circle at 50% 34%, rgba(255, 72, 212, 0.3) 0%, transparent 18%),
+    radial-gradient(circle at 50% 100%, rgba(145, 73, 255, 0.34) 0%, transparent 34%),
+    linear-gradient(130deg, transparent 0%, rgba(255, 255, 255, 0.07) 18%, transparent 20%),
+    linear-gradient(246deg, transparent 0%, rgba(255, 255, 255, 0.07) 14%, transparent 16%);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.champions-orbits {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.08) 0%, transparent 7%),
+    radial-gradient(circle at 50% 50%, transparent 38%, rgba(255, 255, 255, 0.18) 39%, rgba(255, 255, 255, 0.18) 41%, transparent 42%),
+    radial-gradient(circle at 50% 50%, transparent 52%, rgba(255, 61, 193, 0.28) 53%, rgba(255, 61, 193, 0.28) 55%, transparent 56%),
+    radial-gradient(circle at 50% 50%, transparent 68%, rgba(120, 78, 255, 0.28) 69%, rgba(120, 78, 255, 0.28) 71%, transparent 72%),
+    linear-gradient(180deg, rgba(5, 10, 31, 0.14) 0%, rgba(5, 10, 31, 0.36) 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 100%);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.panel-shell {
+  background: linear-gradient(180deg, rgba(8, 11, 48, 0.76) 0%, rgba(4, 7, 30, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(22px);
+}
+
+.champions-badge {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.champions-surface {
+  background: linear-gradient(180deg, rgba(8, 12, 46, 0.86), rgba(4, 7, 26, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.champions-glow {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 18px 48px rgba(0, 0, 0, 0.35),
+    0 0 60px rgba(163, 240, 255, 0.2);
+}
+
+.scoreboard-stage {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.scoreboard-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 11%, rgba(255, 255, 255, 0.2) 0%, transparent 6%),
+    radial-gradient(circle at 50% 17%, rgba(255, 255, 255, 0.08) 0%, transparent 16%),
+    radial-gradient(circle at 50% 52%, rgba(255, 56, 199, 0.28) 0%, transparent 26%),
+    radial-gradient(circle at 50% 74%, rgba(95, 32, 214, 0.34) 0%, transparent 32%),
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.08) 100%);
+  pointer-events: none;
+}
+
+.scoreboard-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.08) 18%, transparent 20%),
+    linear-gradient(290deg, transparent 0%, rgba(255, 255, 255, 0.08) 12%, transparent 14%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 20px);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.scoreboard-crest {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+.scoreboard-bar {
+  background: linear-gradient(180deg, rgba(4, 7, 34, 0.88), rgba(2, 4, 22, 0.96));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 52px rgba(0, 0, 0, 0.34);
+}
+
+/* Ensure grid cells center their content horizontally */
+.scoreboard-bar .grid {
+  align-items: center;
+  justify-items: center;
+}
+
+/* Force inner text blocks to center horizontally */
+.scoreboard-bar .min-w-0,
+.scoreboard-bar .champions-display,
+.scoreboard-bar .score-badge {
+  text-align: center;
+}
+
+.scoreboard-divider {
+  color: #aef3ff;
+  text-shadow: 0 0 18px rgba(174, 243, 255, 0.6);
+}
+
+.scoreboard-ball {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #dfe9ff 20%, #e8ecff 36%, #2332a1 37%, #0a1260 70%, #05073c 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 24px 48px rgba(0, 0, 0, 0.38), 0 0 60px rgba(255, 255, 255, 0.14);
+  display: grid;
+  place-items: center;
+}
+
+.scoreboard-ball svg {
+  width: 84%;
+  height: 84%;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.18));
+}
+
+.scoreboard-logo-wrap {
+  width: clamp(4.8rem, 8vw, 7.5rem);
+  height: clamp(4.8rem, 8vw, 7.5rem);
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.06) 55%, rgba(0, 0, 0, 0.08) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 20px 48px rgba(0, 0, 0, 0.36), 0 0 48px rgba(255, 56, 199, 0.18);
+}
+
+.scoreboard-logo-image {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.38));
+}
+
+.scoreboard-time {
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.24), 0 0 56px rgba(255, 56, 199, 0.16);
+}
+
+/* Large score badge for goals */
+.score-badge {
+  display: inline-grid;
+  place-items: center;
+  width: clamp(3.2rem, 8vw, 6rem);
+  height: clamp(3.2rem, 8vw, 6rem);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(163, 240, 255, 0.12), rgba(163, 240, 255, 0.04));
+  border: 1px solid rgba(163, 240, 255, 0.14);
+  color: var(--accent-strong);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 3.8vw, 2.2rem);
+  line-height: 1;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.48), 0 0 36px rgba(163, 240, 255, 0.06);
+}
+
+@media (min-width: 768px) {
+  .score-badge {
+    width: 4.8rem;
+    height: 4.8rem;
+    font-size: 1.9rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .score-badge {
+    width: 6.4rem;
+    height: 6.4rem;
+    font-size: 2.6rem;
+  }
+}
+
+/* Game start time badge in the top-right */
+.game-start {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 40;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(3, 6, 30, 0.48), 0 0 28px rgba(163, 240, 255, 0.06);
+}
+
+@media (max-width: 640px) {
+  .game-start {
+    top: 0.65rem;
+    right: 0.65rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .game-start {
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.15rem;
+    padding: 0.8rem 1.1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .game-start {
+    top: 1.75rem;
+    right: 1.75rem;
+    font-size: 1.25rem;
+    padding: 0.9rem 1.25rem;
+  }
+}
